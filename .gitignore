@@ -1,1 +1,3 @@
-*/__pycache__/*
+__pycache__/*
+module/config/application_default_credential.json
+*.pyc

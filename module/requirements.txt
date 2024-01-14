@@ -1,3 +1,0 @@
-pytest
-google-cloud-bigquery
-Jinja2

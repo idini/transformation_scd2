@@ -1,0 +1,16 @@
+version: "3"
+
+x-transformation_scd2-common:
+  &transformation_scd2-common
+  volumes:
+    - ~/.config/gcloud/application_default_credentials.json:/transformation_scd2/credentials/application_default_credentials.json
+
+services:
+  transformation_scd2:
+    <<: *transformation_scd2-common
+    build: .
+    ports:
+      - "5001:5000"
+  test_transformation_scd2:
+    <<: *transformation_scd2-common
+    build: .

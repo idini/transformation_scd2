@@ -1,6 +1,8 @@
 import logging
-from lib.tablemanagement.BigQueryManager import BigQueryManager
+from lib.dbmanagement.tablemanagement.BigQueryManager import BigQueryManager
+from lib.dbmanagement.connector.BigQueryConnector import BigQueryConnector
 from pandas import DataFrame
+
 
 
 class TableComparer():
@@ -10,7 +12,7 @@ class TableComparer():
     Schema for source table and destination table should be the same, except for tech fields in destination table.
 
     Args:
-        bigquery_manager (BigQueryManager): table manager for Bigquery.
+        bigquery_connection (BigQueryConnector): Bigquery connection from BigQueryConnector.
 
     """
 
@@ -46,9 +48,9 @@ class TableComparer():
     """
 
     def __init__(self,
-                 bigquery_manager:BigQueryManager
+                 bigquery_connection:BigQueryConnector
                 ) -> None:
-        self.__bigquery_manager = bigquery_manager
+        self.__bigquery_manager = BigQueryManager(bigquery_connection)
         self.__logger = logging.getLogger()
 
     def compare_tables(self, src_table:str, dest_table:str) -> DataFrame:
@@ -68,12 +70,15 @@ class TableComparer():
             and value 2 means deleted rows (to invalidate in the destination table)
 
         """
-        sql_difference_query = TableComparer.DIFF_STMT.format(
-                src_table = src_table,
-                dest_table = dest_table
-            )
+        try:
+            sql_difference_query = TableComparer.DIFF_STMT.format(
+                    src_table = src_table,
+                    dest_table = dest_table
+                )
+            query_job = self.__bigquery_manager.run_query(sql_difference_query)
+            return query_job.to_dataframe()
 
-        return self.__bigquery_manager.run_query(sql_difference_query)
-
-
+        except Exception as e:
+            self.__logger.error(f'Error comparing data between {src_table} and {dest_table} tables with error {str(e)}')
+            raise e
 

@@ -1,0 +1,5 @@
+pytest
+google-cloud-bigquery[pandas]==3.7.0
+Flask==2.2.2
+Werkzeug==2.2.2
+flask-restx

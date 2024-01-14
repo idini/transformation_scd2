@@ -70,3 +70,6 @@ You can run the code in two ways:
  - `./bin/test.up.sh`
  - `./bin/up.sh` and `./bin/exec.sh test_env bash`
 
+## Future improvements
+ -  check schema between source and destination table
+ -  use bigquery transaction and session
