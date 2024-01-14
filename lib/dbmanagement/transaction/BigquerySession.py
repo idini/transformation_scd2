@@ -37,16 +37,6 @@ class BigquerySession (object):
             ],
         )
 
-        self.__load_session_job = LoadJobConfig(
-            create_session=False,
-            connection_properties=[
-                ConnectionProperty(
-                    key="session_id", value=self.__session_id
-
-                )
-            ],
-        )
-
         return self.__session_job
 
     def __enter__ (self) -> str:
@@ -56,8 +46,6 @@ class BigquerySession (object):
     def get_session_id (self):
         return self.__session_id
 
-    def get_load_session(self):
-        return self.__load_session_job
 
     def end_session (self):
         if self.__session_id:

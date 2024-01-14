@@ -109,8 +109,8 @@ class DataIngestor():
         technical_id_list = query_job.to_dataframe()
 
         rows_to_insert = data_to_ingest[data_to_ingest['operation']== 1].drop(columns=['operation'])
-
-        rows_to_insert['TechnicalKey'] = rows_to_insert.apply(lambda x : self.__assign_tech_id(technical_id_list), axis=1)
+        rows_to_insert.insert(loc=0, column='TechnicalKey', value=self.__assign_tech_id(technical_id_list))
+        #rows_to_insert['TechnicalKey'] = rows_to_insert.apply(lambda x : self.__assign_tech_id(technical_id_list), axis=1)
         rows_to_insert['Date_To'] = datetime(9999,1,1,0,0,0).isoformat()
         rows_to_insert['Date_From'] = datetime.combine(date.today(), time.min).isoformat()
         rows_to_insert['Is_valid'] = 'yes'
@@ -139,14 +139,13 @@ class DataIngestor():
         """
         try:
             job_config = self.__bigquery_transaction.begin_transaction()
-            load_job_config = self.__bigquery_transaction.get_load_job_config
 
             data_to_ingest = self.__comparer.compare_tables(source_table, destination_table)
 
             if not data_to_ingest.empty:
                 rows_updated  = self.__update_data(destination_table, pkey, data_to_ingest, job_config)
             if not data_to_ingest[data_to_ingest['operation'] == 1].empty:
-                rows_inserted = self.__insert_data(destination_table,data_to_ingest, load_job_config)
+                rows_inserted = self.__insert_data(destination_table,data_to_ingest, job_config)
 
             self.__bigquery_transaction.commit_transaction()
 

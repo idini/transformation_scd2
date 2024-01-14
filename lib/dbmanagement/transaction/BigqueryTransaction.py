@@ -71,11 +71,6 @@ class BigqueryTransaction (): #TODO this class should contain the logic of BigQu
     def get_job_config (self):
         return self.__job_config
 
-    @property
-    def get_load_job_config (self):
-        return self.__bigquery_session.get_load_session()
-
-
     def __check_existing_job (self):
         if not self.get_job_config:
             raise Exception('Begin transaction not initialized')

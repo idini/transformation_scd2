@@ -40,25 +40,24 @@ class BigQueryManager():
         return query_job
 
 
-    def insert_records_from_dataframe(self, destination_table:str, rows:DataFrame, job_config:LoadJobConfig = None) -> int:
-        """ method that insert records to a table from a pandas dataframe using LoadJobConfig
+    def insert_records_from_dataframe(self, destination_table:str, rows:DataFrame) -> int:
+        """ method that insert records to a table from a pandas dataframe
 
         Args:
             destination_table (str): name of table
             rows (DataFrame): pandas.DataFrame containing the new records
-            job_config (LoadJobConfig, optional): query job used for transaction. If None, method runs without transaction
 
         Returns:
             int: number of records inserted
 
         Notes:
-            rows should respect the schema of destination table
+            rows should respect the schema of destination table. This method does not use BigQuery Transaction
 
         """
 
 
         try:
-            job = self.__client.load_table_from_dataframe(dataframe = rows, destination = destination_table, job_config = job_config)
+            job = self.__client.load_table_from_dataframe(dataframe = rows, destination = destination_table)
             job.result()
             self.__logger.info(f"Inserted table {destination_table} with {job.output_rows} rows.")
             return job.output_rows
@@ -71,8 +70,7 @@ class BigQueryManager():
 
         Args:
             destination_table (str): name of table
-            assignments (dict): dict containing the couple column -> value
-            filter_cond (str) : filter statement
+            rows (DataFrame): pandas.DataFrame containing the new records
             job_config (QueryJobConfig, optional): query job used for transaction. If None, method runs without transaction
 
 
@@ -132,53 +130,3 @@ class BigQueryManager():
         except Exception as e:
             self.__logger.error(f'Error updating data in table {destination_table} with error {str(e)}')
             raise e
-
-
-
-    def create_dataset(self, dataset_name:str)->None:
-        """ method used to create a dataset on bigquery
-
-        Args:
-            dataset_name (str): name of dataset
-
-        Examples:
-            >>> bq_manager = BigqueryManager(client)
-            >>> bq_manager.create_dataset(dataset_name = 'test')
-
-        """
-        # initialize dataset reference
-        dataset_ref = self.__client.dataset(dataset_name)
-
-        # set location for new dataset
-        dataset_ref.location = "europe-west6"
-
-        # create dataset
-        self.__client.create_dataset(dataset_ref, timeout=30, exists_ok= True)
-        self.__logger.info(f'Dataset {dataset_name} created.')
-
-    def create_table(self, dataset_name:str, table_name:str, schema:list = None) -> None:
-        """ method used to create a table on bigquery
-
-        Args:
-            dataset_name (str): name of dataset
-            table_name (str): name of table
-            schema (list, optional): list of SchemaField objects
-
-        Examples:
-            >>> bq_manager = BigqueryManager(client)
-            >>> bq_manager.create_table(dataset_name = 'test_dataset', table_name = 'test_table)
-
-        Notes:
-            If dataset does not exists, the method creates it before table creation.
-            Furthermore, the table can be created without a schema definition
-
-        """
-        # check if dataset exists, if not, create it
-        self.create_dataset(dataset_name=dataset_name)
-
-        # initialize table reference
-        table_ref = self.__client.dataset(dataset_name).table(table_name)
-
-        table_config = Table(table_ref, schema=schema)
-        self.__client.create_table(table_config, exists_ok=True)
-        self.__logger.info(f'Table {dataset_name}.{table_name} created.')
