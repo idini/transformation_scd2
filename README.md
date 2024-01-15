@@ -23,65 +23,65 @@ If not, please run the following command from terminal `gcloud auth application-
 The folder structure is detailed in the following section:
 <details>
   <summary>Show project structure</summary>
-```markdown
-worldline_bq_usecase
- ┣ bin
- ┃ ┣ down.sh
- ┃ ┣ test.sh
- ┃ ┣ test.up.sh
- ┃ ┗ up.sh
- ┣ lib
- ┃ ┣ data
- ┃ ┃ ┣ comparer
- ┃ ┃ ┃ ┣ TableComparer.py
- ┃ ┃ ┃ ┗ __init__.py
- ┃ ┃ ┣ ingestor
- ┃ ┃ ┃ ┣ DataIngestor.py
- ┃ ┃ ┃ ┗ __init__.py
- ┃ ┃ ┗ __init__.py
- ┃ ┗ dbmanagement
- ┃ ┃ ┣ connector
- ┃ ┃ ┃ ┣ BigQueryConnector.py
- ┃ ┃ ┃ ┗ __init__.py
- ┃ ┃ ┣ tablemanagement
- ┃ ┃ ┃ ┣ BigQueryManager.py
- ┃ ┃ ┃ ┗ __init__.py
- ┃ ┃ ┣ transaction
- ┃ ┃ ┃ ┣ BigquerySession.py
- ┃ ┃ ┃ ┣ BigqueryTransaction.py
- ┃ ┃ ┃ ┗ __init__.py
- ┃ ┃ ┗ __init__.py
- ┣ sql_example
- ┃ ┣ setup_tables
- ┃ ┃ ┣ create_populate_Table2_Partners_Output.sql
- ┃ ┃ ┗ create_populate_Table_1_Partners_Input.sql
- ┃ ┣ simulate_update_source.sql
- ┃ ┗ update_table_2_partners_output.sql
- ┣ tests
- ┃ ┣ integration
- ┃ ┃ ┣ data
- ┃ ┃ ┃ ┣ comparer
- ┃ ┃ ┃ ┃ ┗ TableComparer_test.py
- ┃ ┃ ┃ ┗ ingestor
- ┃ ┃ ┃ ┃ ┗ DataIngestor_test.py
- ┃ ┃ ┗ dbmanagement
- ┃ ┃ ┃ ┣ connector
- ┃ ┃ ┃ ┃ ┗ BigQueryConnector_test.py
- ┃ ┃ ┃ ┗ tablemanagement
- ┃ ┃ ┃ ┃ ┗ BigQueryManager_test.py
- ┃ ┗ unit
- ┃ ┃ ┗ data
- ┃ ┃ ┃ ┣ comparer
- ┃ ┃ ┃ ┃ ┗ TableComparer_test.py
- ┃ ┃ ┃ ┗ ingestor
- ┃ ┃ ┃ ┃ ┗ DataIngestor_test.py
- ┣ .gitignore
- ┣ Dockerfile
- ┣ README.md
- ┣ app.py
- ┣ docker-compose.yml
- ┗ requirements.txt
-```
+    ```markdown
+    worldline_bq_usecase
+    ┣ bin
+    ┃ ┣ down.sh
+    ┃ ┣ test.sh
+    ┃ ┣ test.up.sh
+    ┃ ┗ up.sh
+    ┣ lib
+    ┃ ┣ data
+    ┃ ┃ ┣ comparer
+    ┃ ┃ ┃ ┣ TableComparer.py
+    ┃ ┃ ┃ ┗ __init__.py
+    ┃ ┃ ┣ ingestor
+    ┃ ┃ ┃ ┣ DataIngestor.py
+    ┃ ┃ ┃ ┗ __init__.py
+    ┃ ┃ ┗ __init__.py
+    ┃ ┗ dbmanagement
+    ┃ ┃ ┣ connector
+    ┃ ┃ ┃ ┣ BigQueryConnector.py
+    ┃ ┃ ┃ ┗ __init__.py
+    ┃ ┃ ┣ tablemanagement
+    ┃ ┃ ┃ ┣ BigQueryManager.py
+    ┃ ┃ ┃ ┗ __init__.py
+    ┃ ┃ ┣ transaction
+    ┃ ┃ ┃ ┣ BigquerySession.py
+    ┃ ┃ ┃ ┣ BigqueryTransaction.py
+    ┃ ┃ ┃ ┗ __init__.py
+    ┃ ┃ ┗ __init__.py
+    ┣ sql_example
+    ┃ ┣ setup_tables
+    ┃ ┃ ┣ create_populate_Table2_Partners_Output.sql
+    ┃ ┃ ┗ create_populate_Table_1_Partners_Input.sql
+    ┃ ┣ simulate_update_source.sql
+    ┃ ┗ update_table_2_partners_output.sql
+    ┣ tests
+    ┃ ┣ integration
+    ┃ ┃ ┣ data
+    ┃ ┃ ┃ ┣ comparer
+    ┃ ┃ ┃ ┃ ┗ TableComparer_test.py
+    ┃ ┃ ┃ ┗ ingestor
+    ┃ ┃ ┃ ┃ ┗ DataIngestor_test.py
+    ┃ ┃ ┗ dbmanagement
+    ┃ ┃ ┃ ┣ connector
+    ┃ ┃ ┃ ┃ ┗ BigQueryConnector_test.py
+    ┃ ┃ ┃ ┗ tablemanagement
+    ┃ ┃ ┃ ┃ ┗ BigQueryManager_test.py
+    ┃ ┗ unit
+    ┃ ┃ ┗ data
+    ┃ ┃ ┃ ┣ comparer
+    ┃ ┃ ┃ ┃ ┗ TableComparer_test.py
+    ┃ ┃ ┃ ┗ ingestor
+    ┃ ┃ ┃ ┃ ┗ DataIngestor_test.py
+    ┣ .gitignore
+    ┣ Dockerfile
+    ┣ README.md
+    ┣ app.py
+    ┣ docker-compose.yml
+    ┗ requirements.txt
+    ```
 </details>
 
 
