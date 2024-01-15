@@ -104,7 +104,8 @@ The `lib` code is composed by
  - `dbmanagement` folder that contains code for *connector*, **tablemanagement* and *transaction*
 
 Furthermore, the repository contains a `sql_example` folder with sql files to
- - [generate tables](./sql_example/setup_tables)
+ - [generate table Table1_Partners_Input.sql](./sql_example/setup_tables/create_populate_Table_1_Partners_Input.sql)
+ - [generate table Table2_Partners_Output.sql](./sql_example/setup_tables/create_populate_Table2_Partners_Output.sql)
  - [simulate transformation tables](./sql_example/update_table_2_partners_output.sql2)
 
 ## Business Logic
