@@ -186,7 +186,7 @@ The result of `TableComparer.compare_tables` is a `pandas.DataFrame` containing 
  - value `2` means deleted rows (to invalidate in the destination table)
 
  <p align="center">
-<img src="./docs/images/business_logic.png" />
+<img src="./docs/images/tables.png" />
 </p>
 
 Using that DataFrame, the method `ingest_data` updates destination table invalidating already existing records (setting `Is_valid = 'no'`) for every primary key stored in the dataframe, so every record to be update and delete is invalidated. Then, the above method inserts the records contained in the dataframe where `operation` value is equal to 1, in order to insert new and updated records.
