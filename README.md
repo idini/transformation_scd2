@@ -20,7 +20,8 @@ If not, please run the following command from terminal `gcloud auth application-
 
 ## Project Description
 
-The folder structure is detailed in the following section:
+### Folder structure
+
 <details>
   <summary>Show project structure</summary>
     ```markdown
@@ -84,6 +85,7 @@ The folder structure is detailed in the following section:
     ```
 </details>
 
+### Content
 
 The main folder contains
 
@@ -105,7 +107,8 @@ Furthermore, the repository contains a `sql_example` folder with sql files to
 
 ## Business Logic
 
-The UML diagram for lib is shown below:
+### UML diagram
+
 <details>
   <summary>Show UML diagram</summary>
     <p align="center">
@@ -113,6 +116,9 @@ The UML diagram for lib is shown below:
     </p>
 </details>
 
+### Behavior
+
+TBD
 
 ## Run the code
 
