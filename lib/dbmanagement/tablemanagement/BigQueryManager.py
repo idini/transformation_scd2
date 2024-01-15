@@ -1,4 +1,4 @@
-from google.cloud.bigquery import Client, Table, QueryJobConfig, job, LoadJobConfig
+from google.cloud.bigquery import Client, QueryJobConfig, job
 import logging
 from pandas import DataFrame
 
@@ -38,32 +38,6 @@ class BigQueryManager():
         query_job.result()
 
         return query_job
-
-
-    def insert_records_from_dataframe(self, destination_table:str, rows:DataFrame) -> int:
-        """ method that insert records to a table from a pandas dataframe
-
-        Args:
-            destination_table (str): name of table
-            rows (DataFrame): pandas.DataFrame containing the new records
-
-        Returns:
-            int: number of records inserted
-
-        Notes:
-            rows should respect the schema of destination table. This method does not use BigQuery Transaction
-
-        """
-
-
-        try:
-            job = self.__client.load_table_from_dataframe(dataframe = rows, destination = destination_table)
-            job.result()
-            self.__logger.info(f"Inserted table {destination_table} with {job.output_rows} rows.")
-            return job.output_rows
-        except Exception as error:
-            self.__logger.error(f'Error loading data in table {destination_table} with error {str(error)}')
-            raise error
 
     def insert_records(self, destination_table:str, rows:DataFrame, job_config:QueryJobConfig = None) -> None:
         """ method that insert records to a table from a pandas dataframe

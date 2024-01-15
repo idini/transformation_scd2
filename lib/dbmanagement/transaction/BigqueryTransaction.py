@@ -67,6 +67,11 @@ class BigqueryTransaction (): #TODO this class should contain the logic of BigQu
 
         return result
 
+    def close_transaction(self):
+        self.__check_existing_job()
+        self.__bigquery_session.end_session()
+        self.__job_config = None
+
     @property
     def get_job_config (self):
         return self.__job_config

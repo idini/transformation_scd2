@@ -1,3 +1,5 @@
 __pycache__/*
 module/config/application_default_credential.json
 *.pyc
+.pytest_cache/
+.DS_Store

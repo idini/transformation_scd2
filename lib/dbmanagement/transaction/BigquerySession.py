@@ -16,7 +16,7 @@ class BigquerySession (object):
     def start_session (self):
         """Initiate a Bigquery session and return the session_id."""
         res = self.__client.query(
-            "SELECT 1;",  # a query can't fail
+            "SELECT 3;",  # a query can't fail
             job_config = QueryJobConfig(
                 create_session = True,
                 use_legacy_sql = False,

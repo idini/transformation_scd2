@@ -1,5 +1,5 @@
-pytest
-google-cloud-bigquery[pandas]==3.7.0
+pytest==7.4.4
+google-cloud-bigquery[pandas]==2.34.3
 Flask==2.2.2
 Werkzeug==2.2.2
-flask-restx
+flask-restx==1.1.0
