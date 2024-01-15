@@ -1,6 +1,7 @@
 # Worldline - Data Engineer Transformation SCD2 use case
 
 **Maurizio Idini**
+
 16/01/2024
 
 ## Introduction
