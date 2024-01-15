@@ -117,11 +117,9 @@ You can run the code in two ways:
  - `./bin/test.up.sh` and `./bin/test.sh`
  - `./bin/test.sh` in your local machine
 
-Verify the deployment by navigating to your server address in your preferred browser.
+Verify the deployment by navigating to [127.0.0.1:5001](127.0.0.1:5001) in your preferred browser and use `/trigger` post call with default arguments.
 
-```sh
-127.0.0.1:5001
-```
+
 
 ## Future improvements
  -  Check schema between source and destination table
