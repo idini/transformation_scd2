@@ -109,10 +109,11 @@ class DataIngestor():
         technical_id_list = query_job.to_dataframe()
 
         rows_to_insert = data_to_ingest[data_to_ingest['operation']== 1].drop(columns=['operation'])
+        # CAREFUL: columns added in positional order as declaration
         rows_to_insert.insert(loc=0, column='TechnicalKey', value=self.__assign_tech_id(technical_id_list))
         #rows_to_insert['TechnicalKey'] = rows_to_insert.apply(lambda x : self.__assign_tech_id(technical_id_list), axis=1)
-        rows_to_insert['Date_To'] = datetime(9999,1,1,0,0,0).isoformat()
-        rows_to_insert['Date_From'] = datetime.combine(date.today(), time.min).isoformat()
+        rows_to_insert['Date_From'] = datetime.combine(date.today(), time.min).strftime("%Y-%m-%d %H:%M:%S")
+        rows_to_insert['Date_To'] = datetime(9999,1,1,0,0,0).strftime("%Y-%m-%d %H:%M:%S")
         rows_to_insert['Is_valid'] = 'yes'
 
         return self.__bigquery_manager.insert_records(destination_table, rows_to_insert, job_config)
