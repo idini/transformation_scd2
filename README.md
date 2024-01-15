@@ -142,7 +142,7 @@ The *Transformation_SCD2* process is described as follows:
 <img src="./docs/images/business_logic.png" />
 </p>
 
-A process (in the use_case the */trigger/* POST call) calls `DataIngestor.ingest_data` on the source and destination tables with a specific Primary Key. This Primary Key is also the Surrogate Key on the destination table.
+A process (in the use_case the `/trigger/` POST call) calls `DataIngestor.ingest_data` on the source and destination tables with a specific *Primary Key*. This Primary Key is also the *Surrogate Key* on the destination table.
 
 The `DataIngestor` object is initialized using an instance of `BigQueryConnector` to connect to BigQuery, and the connection is already instantiated on a specific `project_id`.
 
@@ -163,7 +163,7 @@ Since the destination table is a DWH table, it should contain technical paramete
 <img src="./docs/images/tables.png" />
 </p>
 
-The check is performed using a SQL query to delegate computation to the BigQuery engine, excluding non-valid records (`Is_valid = 'no'`) and technical fields.
+The check is performed using a SQL query to delegate computation to the BigQuery engine, excluding non-valid records (`Is_valid = 'no'`) and technical fields from destination table.
 
  ```
 with src_table as (
@@ -196,10 +196,10 @@ select *, 2 as operation # deleted
 from rows_to_delete;
  ```
 
-The result of `TableComparer.compare_tables` is a `pandas.DataFrame` containing all fields from the source/destination table and a column`operation` where
+The result of `TableComparer.compare_tables` is a `pandas.DataFrame` containing all fields from the source and destination table and a column`operation` where
 
- - value `1` means new or updated rows (to insert in the destination table)
- - value `2` means deleted rows (to invalidate in the destination table)
+ - value `1` means new or updated records (to insert in the destination table)
+ - value `2` means deleted records (to invalidate in the destination table)
 
 <p align="center">
 <img src="./docs/images/compare_result.png" />
