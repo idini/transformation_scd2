@@ -17,7 +17,7 @@ The lib is written using **google-cloud** library, documented using **Docstring*
 
 #### Disclaimer
 
-The code is written for the transformation module, it is assumed that the bigquery tables already exists.
+The code is written for the transformation module. It is assumed that the bigquery tables already exists.
 
 Before run the code, please check if the `application_default_credential.json` credential file is already in your machine, in the path `~/.config/gloud/`.
 If not, please run the following command from terminal `gcloud auth application-default login` and follow the steps.
