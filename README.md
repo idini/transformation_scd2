@@ -107,7 +107,7 @@ Furthermore, the repository contains a `sql_example` folder with sql files to
 
 The UML diagram for lib is shown below:
 <details>
-  <summary>Show project structure</summary>
+  <summary>Show UML diagram</summary>
     <p align="center">
     <img src="./docs/images/Lib_UML.png" />
     </p>
@@ -124,11 +124,8 @@ You can run the code in two ways:
  - `./bin/test.up.sh` and `./bin/test.sh`
  - `./bin/test.sh` in your local machine
 
-Verify the deployment by navigating to your server address in your preferred browser.
+Verify the deployment by navigating to [127.0.0.1:5001](http://127.0.0.1:5001) in your preferred browser.
 
-```sh
-127.0.0.1:5001
-```
 
 ## Future improvements
  -  Check schema between source and destination table
