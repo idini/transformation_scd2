@@ -6,7 +6,7 @@
 ## Introduction
 
 This is a simple document that briefly describes the repository.
-The aim of the use case implemented in this repository is to perform table transformations based on *Slowly Changing Dimension type2*
+The aim of the use case implemented in this repository is to perform table transformations based on [*Slowly Changing Dimension type2*](https://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2:_add_new_row)
 
 The module is written in **Python 3.8**, using **Docker** container.
 The lib is written using **google-cloud** library, documented using **Docstring** and tested using **pytest**.
