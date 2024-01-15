@@ -1,3 +1,6 @@
+<p align="center">
+<img src="./docs/images/worldline_logo.png" />
+</p>
 # Worldline - Data Engineer Transformation SCD2 use case
 
 **Maurizio Idini**
@@ -119,12 +122,18 @@ The documentation is accessible through [Documentation Main Page](https://idini.
 
 ### Flow
 
-The process is described as follows:
+The *Transformation_SCD2* process is described as follows:
 
 <p align="center">
 <img src="./docs/images/business_logic.png" />
 </p>
 
+ - List item
+ - fdsf
+ - asdf
+ - a
+ - sdafasd
+ - List item
 
 ## Run the code
 
