@@ -24,7 +24,6 @@ The folder structure is detailed in the following section:
 <details>
   <summary>Show project structure</summary>
   
-    ```md
     worldline_bq_usecase
     ┣ bin
     ┃ ┣ down.sh
@@ -82,7 +81,8 @@ The folder structure is detailed in the following section:
     ┣ app.py
     ┣ docker-compose.yml
     ┗ requirements.txt
-    ```
+
+    
 </details>
 
 
