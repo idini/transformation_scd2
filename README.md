@@ -106,10 +106,12 @@ Furthermore, the repository contains a `sql_example` folder with sql files to
 ## Business Logic
 
 The UML diagram for lib is shown below:
-<p align="center">
-  <img src="./docs/images/Lib_UML.png" />
-</p>
-
+<details>
+  <summary>Show project structure</summary>
+    <p align="center">
+    <img src="./docs/images/Lib_UML.png" />
+    </p>
+</details>
 
 
 ## Run the code
