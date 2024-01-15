@@ -30,7 +30,7 @@ The lib is written using **google-cloud** library, documented using **Docstring*
 
 #### Disclaimer
 
-The code is written for the transformation module. It is assumed that the bigquery tables already exists.
+The code is written for the transformation module. It is assumed that the bigquery tables already exist.
 
 Before running the code, please check if the `application_default_credential.json` credential file is already on your machine, in the path `~/.config/gloud/`.
 If not, please run the following command in the terminal `gcloud auth application-default login` and follow the steps.
@@ -107,13 +107,13 @@ The main folder contains
  - `Dockerfile` and `docker-compose.yml` for the Docker container
  - `lib` that contains the code
  - `bin` folder with bash script useful to run docker environments
- - `app.py` that contains code FlaskAPI code to trigger the process
+ - `app.py` that contains the FlaskAPI code to trigger the process
  - `README.md` that contains this description
 
 The `lib` code is composed by
 
- - `data` folder that contains code for *comparer* and *ingestor*
- - `dbmanagement` folder that contains code for *connector*, **tablemanagement* and *transaction*
+ - `data` folder that contains the code for *comparer* and *ingestor*
+ - `dbmanagement` folder that contains the code for *connector*, **tablemanagement* and *transaction*
 
 Furthermore, the repository contains a `sql_example` folder with sql files to
  - [generate table Table1_Partners_Input.sql](./sql_example/setup_tables/create_populate_Table_1_Partners_Input.sql)
@@ -157,13 +157,13 @@ ingestor.ingest_data(src_table, dest_table, pkey)
 
 The `ingest_data` method calls `TableComparer.compare_tables` on the already mentioned tables and checks for new/updated/deleted records on the source table based on the destination table.
 
-Since the destination table is a DWH table, it should contain technical parameters such as  `TechnicalKEY`, `Date_from`, `Date_to` and `Is_valid`. Furthermore, the schema for the source table and destination table should be the same, except for technical fields in the destination table.
+Since the destination table is a DWH table, it should contain technical parameters such as  `TechnicalKEY`, `Date_from`, `Date_to` and `Is_valid`. Furthermore, the schema for the source table and destination table should be the same, except for the technical fields in the destination table.
 
 <p align="center">
 <img src="./docs/images/tables.png" />
 </p>
 
-The check is performed using a SQL query to delegate computation to the BigQuery engine, excluding non-valid records (`Is_valid = 'no'`) and technical fields from destination table.
+The check is performed using a SQL query to delegate the computation to the BigQuery engine, excluding non-valid records (`Is_valid = 'no'`) and technical fields from the destination table.
 
  ```
 with src_table as (
@@ -238,5 +238,5 @@ Verify the deployment by navigating to [127.0.0.1:5001](http://127.0.0.1:5001) i
 
 
 ## Future improvements
- -  Check schema between source and destination table
- -  Implement *Factory pattern* in `Connector`, `TableManagement` and `Transaction` in order to extend DataIngestor with the use of others DB
+ -  Check the schema between source and destination table
+ -  Implement *Factory pattern* in `Connector`, `TableManagement` and `Transaction` in order to extend DataIngestor with the use of other DBs
