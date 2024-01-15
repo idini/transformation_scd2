@@ -211,6 +211,19 @@ Using that DataFrame, the `ingest_data` method updates the destination table by 
 <img src="./docs/images/result.png" />
 </p>
 
+The *insert* and *update* operations are performed using `BigQueryTransaction`, instantiated on a `BigQuerySession`, in order to guarantee consinstency during transactions.
+
+The `BigQueryTransaction` works in this way:
+ - an instance of `BigQuerySession` creates a session on BigQuery
+ - the `BigQueryTransaction.begin_transaction` runs `BEGIN TRANSACTION;` on the already created session and returns the `job_config` object, as reference of transaction
+ - the inserts and updates runs on the `job_config' previously initialized
+ - if the run executes without errors, the `BigQueryTransaction.commit_transaction` performs the commit running `COMMIT TRANSACTION;`
+ - otherwise, the `BigQueryTransaction.rollback_transaction` is called, performing the `ROLLBACK TRANSACTION;` on BigQuery
+
+<p align="center">
+<img src="./docs/images/transactions.png" />
+</p>
+
 ## Run the code
 
 You can run the code in two ways:
