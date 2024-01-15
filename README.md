@@ -17,6 +17,7 @@
     - [Code documentation](#code-documentation)
  - [Flow](#flow)
  - [Run the code](#run-the-code)
+ - [Run the tests](#run-the-tests)
  - [Future improvements](#future-improvements)
 
 
@@ -230,11 +231,14 @@ You can run the code in two ways:
  -  using `python app.py` in your local machine
  -  using Docker, running `./bin/up.sh`
 
+Verify the deployment by navigating to [127.0.0.1:5001](http://127.0.0.1:5001) in your preferred browser.
+
+## Run the tests
+
  You can run the tests accessing to `test_transformation_scd2` Docker container running
  - `./bin/test.up.sh` and `./bin/test.sh`
  - `./bin/test.sh` in your local machine
 
-Verify the deployment by navigating to [127.0.0.1:5001](http://127.0.0.1:5001) in your preferred browser.
 
 
 ## Future improvements
