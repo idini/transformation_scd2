@@ -119,8 +119,11 @@ The documentation is accessible through [Documentation Main Page](https://idini.
 
 ### Flow
 
-The
+The process is described as follows:
 
+<p align="center">
+<img src="./docs/images/business_logic.png" />
+</p>
 
 
 ## Run the code
