@@ -1,21 +1,19 @@
 # Worldline - Data Engineer Transformation SCD2 use case
 
 **Maurizio Idini**
-19/01/2024
+16/01/2024
 
 ## Introduction
 
 This is a simple document that briefly describes the repository.
-
-The repository contains two main folders:
-- `sql` folder, that contains SQL code to create and populate tables in BigQuery
-- `transformation` that contains Python code that perform table transformations based on *Slowly Changing Dimension type2*
+The aim of the use case implemented in this repository is to perform table transformations based on *Slowly Changing Dimension type2*
 
 The module is written in **Python 3.8**, using **Docker** container.
 The lib is written using **google-cloud** library, documented using **Docstring** and tested using **pytest**.
 
 *Discaimer*
 The code is written for the transformation module, it is assumed that the bigquery tables already exists.
+Before run the code, please check if the `application_default_credential.json` credential file is already in your machine, in the path `~/.config/gloud/`. If not, please run the following command from terminal `gcloud auth application-default login` and follow the steps.
 
 ## Project Description
 
@@ -24,23 +22,57 @@ The folder structure is
 worldline_bq_usecase
  ┣ bin
  ┃ ┣ down.sh
- ┃ ┣ exec.sh
  ┃ ┣ test.sh
  ┃ ┣ test.up.sh
  ┃ ┗ up.sh
  ┣ lib
- ┃ ┣ transformation
- ┃ ┃ ┣ transformator.py
- ┃ ┃ ┗ tbd.py
- ┃ ┣ tbd
- ┃ ┃ ┗ tbd.py
- ┃ ┣ dataencryption
- ┃ ┗ storage
- ┃ ┃ ┣ BigqueryStorageManager.py
- ┃ ┃ ┣ tbd.py
- ┃ ┃ ┣ tbd_test.py
- ┃ ┃ ┗ StorageManager.py
+ ┃ ┣ data
+ ┃ ┃ ┣ comparer
+ ┃ ┃ ┃ ┣ TableComparer.py
+ ┃ ┃ ┃ ┗ __init__.py
+ ┃ ┃ ┣ ingestor
+ ┃ ┃ ┃ ┣ DataIngestor.py
+ ┃ ┃ ┃ ┗ __init__.py
+ ┃ ┃ ┗ __init__.py
+ ┃ ┗ dbmanagement
+ ┃ ┃ ┣ connector
+ ┃ ┃ ┃ ┣ BigQueryConnector.py
+ ┃ ┃ ┃ ┗ __init__.py
+ ┃ ┃ ┣ tablemanagement
+ ┃ ┃ ┃ ┣ BigQueryManager.py
+ ┃ ┃ ┃ ┗ __init__.py
+ ┃ ┃ ┣ transaction
+ ┃ ┃ ┃ ┣ BigquerySession.py
+ ┃ ┃ ┃ ┣ BigqueryTransaction.py
+ ┃ ┃ ┃ ┗ __init__.py
+ ┃ ┃ ┗ __init__.py
+ ┣ sql_example
+ ┃ ┣ setup_tables
+ ┃ ┃ ┣ create_populate_Table2_Partners_Output.sql
+ ┃ ┃ ┗ create_populate_Table_1_Partners_Input.sql
+ ┃ ┣ simulate_update_source.sql
+ ┃ ┗ update_table_2_partners_output.sql
+ ┣ tests
+ ┃ ┣ integration
+ ┃ ┃ ┣ data
+ ┃ ┃ ┃ ┣ comparer
+ ┃ ┃ ┃ ┃ ┗ TableComparer_test.py
+ ┃ ┃ ┃ ┗ ingestor
+ ┃ ┃ ┃ ┃ ┗ DataIngestor_test.py
+ ┃ ┃ ┗ dbmanagement
+ ┃ ┃ ┃ ┣ connector
+ ┃ ┃ ┃ ┃ ┗ BigQueryConnector_test.py
+ ┃ ┃ ┃ ┗ tablemanagement
+ ┃ ┃ ┃ ┃ ┗ BigQueryManager_test.py
+ ┃ ┗ unit
+ ┃ ┃ ┗ data
+ ┃ ┃ ┃ ┣ comparer
+ ┃ ┃ ┃ ┃ ┗ TableComparer_test.py
+ ┃ ┃ ┃ ┗ ingestor
+ ┃ ┃ ┃ ┃ ┗ DataIngestor_test.py
+ ┣ .gitignore
  ┣ Dockerfile
+ ┣ README.md
  ┣ app.py
  ┣ docker-compose.yml
  ┗ requirements.txt
@@ -50,26 +82,30 @@ The main folder contains
 
  - `requirements.txt` with the libraries used in the project
  - `Dockerfile` and `docker-compose.yml` for the Docker container
- - `lib` that contains the code and unit tests
+ - `lib` that contains the code
  - `bin` folder with bash script useful to run docker environments
- - `app.py` that contains code TBD
+ - `app.py` that contains code FlaskAPI code to trigger the process
+ - `README.md` that contains this description
 
 The `lib` code is composed by
 
- - `tbd` code that perform tbd
+ - `data` folder that contains code for *comparer* and *ingestor*
+ - `dbmanagement` folder that contains code for *connector*, **tablemanagement* and *transaction*
 
-The `storage` folder contains `BigqueryManager` to perform read/write operations on Google BigQuery.
+Furthermore, the repository contains a `sql_example` folder with sql files to
+ - [generate tables](./sql_example/setup_tables)
+ - [simulate transformation tables](./sql_example/update_table_2_partners_output.sql2)
 
 ## Run the code
 
 You can run the code in two ways:
- -  using `python app.py`
+ -  using `python app.py` in your local machine
  -  using Docker, running `./bin/up.sh`
 
- You can also access to `test_env` Docker container in two ways, running
- - `./bin/test.up.sh`
- - `./bin/up.sh` and `./bin/exec.sh test_env bash`
+ You can run the tests accessing to `test_transformation_scd2` Docker container running
+ - `./bin/test.up.sh` and `./bin/test.sh`
+ - `./bin/test.sh` in your local machine
 
 ## Future improvements
- -  check schema between source and destination table
- -  use bigquery transaction and session
+ -  Check schema between source and destination table
+ -  Implement *Factory pattern* in `Connector`, `TableManagement` and `Transaction` in order to extend DataIngestor with the use of others DB
