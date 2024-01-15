@@ -149,10 +149,45 @@ Since the destination table is a DWH table, it should contain technical paramete
 
 The check is performed using a SQL query to delegate computation to the BigQuery engine, excluding non-valid records (`Is_valid = 'no'`) and technical fields.
 
+ ```
+    with src_table as (
+        select *
+        from `src_table`
+    ),
+    dest_table as (
+        select * except(TechnicalKey, Date_From, Date_To, Is_valid)
+        from `dest_table`
+        where Is_valid = 'yes'
+    ),
+    rows_to_update as (
+        select *
+        from src_table
+        except distinct
+        select *
+        from dest_table
+    ),
+    rows_to_delete as (
+        select *
+        from dest_table
+        except distinct
+        select *
+        from src_table
+    )
+    select *, 1 as operation # new/updated
+    from rows_to_update
+    union all
+    select *, 2 as operation # deleted
+    from rows_to_delete;
+ ```
+
 The result of `TableComparer.compare_tables` is a `pandas.DataFrame` containing all fields from the source/destination table and a column`operation` where
 
  - value `1` means new or updated rows (to insert in the destination table)
  - value `2` means deleted rows (to invalidate in the destination table)
+
+ <p align="center">
+<img src="./docs/images/business_logic.png" />
+</p>
 
 Using that DataFrame, the method `ingest_data` updates destination table invalidating already existing records (setting `Is_valid = 'no'`) for every primary key stored in the dataframe, so every record to be update and delete is invalidated. Then, the above method inserts the records contained in the dataframe where `operation` value is equal to 1, in order to insert new and updated records.
 
