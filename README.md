@@ -116,9 +116,14 @@ Furthermore, the repository contains a `sql_example` folder with sql files to
     </p>
 </details>
 
-### Behavior
+### Class documentation
+
+The `docs` folder contains class documentation generated using [pdoc](https://pdoc.dev/) library.
+The documentation is accessible through [Documentation Main Page](./docs/lib.html)
 
 TBD
+
+
 
 ## Run the code
 
