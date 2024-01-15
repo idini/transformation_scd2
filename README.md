@@ -11,7 +11,7 @@ The aim of the use case implemented in this repository is to perform table trans
 The module is written in **Python 3.8**, using **Docker** container.
 The lib is written using **google-cloud** library, documented using **Docstring** and tested using **pytest**.
 
-### Discaimer
+### Disclaimer
 
 The code is written for the transformation module, it is assumed that the bigquery tables already exists.
 
