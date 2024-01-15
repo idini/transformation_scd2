@@ -11,7 +11,7 @@ The aim of the use case implemented in this repository is to perform table trans
 The module is written in **Python 3.8**, using **Docker** container.
 The lib is written using **google-cloud** library, documented using **Docstring** and tested using **pytest**.
 
-# Discaimer
+### Discaimer
 
 The code is written for the transformation module, it is assumed that the bigquery tables already exists.
 
@@ -20,7 +20,7 @@ If not, please run the following command from terminal `gcloud auth application-
 
 ## Project Description
 
-The folder structure is
+The folder structure is composed of
 ```markdown
 worldline_bq_usecase
  ┣ bin
