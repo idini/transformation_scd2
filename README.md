@@ -7,6 +7,19 @@
 **Maurizio Idini**
 16/01/2024
 
+## Index
+ - [Introduction](#introduction)
+ - [Project Description]()
+    - [Folder structure]()
+    - [Content]()
+ - [Business Logic]()
+    - [UML diagram]()
+    - [Code documentation]
+ - [Flow]()
+ - [Run the code]()
+ - [Future improvements]()
+
+
 ## Introduction
 
 This is a simple document that briefly describes the repository.
@@ -86,7 +99,6 @@ worldline_bq_usecase
 ┗ requirements.txt
 ```
 
-
 ### Content
 
 The main folder contains
@@ -117,7 +129,7 @@ Furthermore, the repository contains a `sql_example` folder with sql files to
 </p>
 
 
-### Class documentation
+### Code documentation
 
 The `docs` folder contains class documentation generated using [pdoc](https://pdoc.dev/) library.
 The documentation is accessible through [Documentation Main Page](https://idini.github.io/worldline_bq_usecase/lib.html)
