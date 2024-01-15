@@ -147,6 +147,10 @@ The `ingest_data` method calls `TableComparer.compare_tables` on the already men
 
 Since the destination table is a DWH table, it should contain technical parameters such as  `TechnicalKEY`, `Date_from`, `Date_to` and `Is_valid`. Furthermore, the schema for the source table and destination table should be the same, except for technical fields in the destination table.
 
+<p align="center">
+<img src="./docs/images/tables.png" />
+</p>
+
 The check is performed using a SQL query to delegate computation to the BigQuery engine, excluding non-valid records (`Is_valid = 'no'`) and technical fields.
 
  ```
@@ -185,13 +189,15 @@ The result of `TableComparer.compare_tables` is a `pandas.DataFrame` containing 
  - value `1` means new or updated rows (to insert in the destination table)
  - value `2` means deleted rows (to invalidate in the destination table)
 
- <p align="center">
-<img src="./docs/images/tables.png" />
+<p align="center">
+<img src="./docs/images/compare_result.png" />
 </p>
 
-Using that DataFrame, the method `ingest_data` updates destination table invalidating already existing records (setting `Is_valid = 'no'`) for every primary key stored in the dataframe, so every record to be update and delete is invalidated. Then, the above method inserts the records contained in the dataframe where `operation` value is equal to 1, in order to insert new and updated records.
-
 Using that DataFrame, the `ingest_data` method updates the destination table by invalidating existing records (setting `Is_valid = 'no'`) for every primary key stored in the DataFrame. This ensures that every record to be updated and deleted is invalidated. Then, the method inserts the records contained in the DataFrame where the `operation` value is equal to 1, in order to insert new and updated records.
+
+<p align="center">
+<img src="./docs/images/result.png" />
+</p>
 
 ## Run the code
 
