@@ -1,15 +1,12 @@
 # Worldline - Data Engineer Transformation SCD2 use case
 
 **Maurizio Idini**
-
-[maurizio.idini@gmail.com](mailto:maurizio.idini@gmail.com)
-
 16/01/2024
 
 ## Introduction
 
 This is a simple document that briefly describes the repository.
-The aim of the use case implemented in this repository is to perform table transformations based on [*Slowly Changing Dimension type2*](https://en.wikipedia.org/wiki/Slowly_changing_dimension#Type_2:_add_new_row)
+The aim of the use case implemented in this repository is to perform table transformations based on *Slowly Changing Dimension type2*
 
 The module is written in **Python 3.8**, using **Docker** container.
 The lib is written using **google-cloud** library, documented using **Docstring** and tested using **pytest**.
@@ -26,7 +23,7 @@ If not, please run the following command from terminal `gcloud auth application-
 The folder structure is detailed in the following section:
 <details>
   <summary>Show project structure</summary>
-  
+    ```markdown
     worldline_bq_usecase
     ┣ bin
     ┃ ┣ down.sh
@@ -84,8 +81,7 @@ The folder structure is detailed in the following section:
     ┣ app.py
     ┣ docker-compose.yml
     ┗ requirements.txt
-
-    
+    ```
 </details>
 
 
@@ -107,6 +103,15 @@ Furthermore, the repository contains a `sql_example` folder with sql files to
  - [generate tables](./sql_example/setup_tables)
  - [simulate transformation tables](./sql_example/update_table_2_partners_output.sql2)
 
+## Business Logic
+
+The UML diagram for lib is shown below:
+<p align="center">
+  <img src="./docs/images/Lib_UML.png" />
+</p>
+
+
+
 ## Run the code
 
 You can run the code in two ways:
@@ -117,9 +122,11 @@ You can run the code in two ways:
  - `./bin/test.up.sh` and `./bin/test.sh`
  - `./bin/test.sh` in your local machine
 
-Verify the deployment by navigating to [127.0.0.1:5001](http://127.0.0.1:5001) in your preferred browser and use `/trigger` post call with default arguments.
+Verify the deployment by navigating to your server address in your preferred browser.
 
-
+```sh
+127.0.0.1:5001
+```
 
 ## Future improvements
  -  Check schema between source and destination table
