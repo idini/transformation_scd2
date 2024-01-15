@@ -129,12 +129,33 @@ The *Transformation_SCD2* process is described as follows:
 <img src="./docs/images/business_logic.png" />
 </p>
 
- - List item
- - fdsf
- - asdf
- - a
- - sdafasd
- - List item
+A process (in the use_case the */trigger/ POST call) calls `DataIngestor.ingest_data` on the source and destination tables with a specific Primary Key. This Primary Key is also the Surrogate Key on the destination table.
+
+The `DataIngestor` object is initialized using an instance of `BigQueryConnector` to connect to BigQuery, and the connection is already instantiated on a specific `project_id`.
+
+ ```
+project_id = 'worldline-prj'
+
+bq_client = BigQueryConnector(project_id).get_client()
+ingestor = DataIngestor(bq_client)
+ingestor.ingest_data(src_table, dest_table, pkey)
+
+ ```
+
+The `ingest_data` method calls `TableComparer.compare_tables` on the already mentioned tables and checks for new/updated/deleted records on the source table based on the destination table.
+
+Since the destination table is a DWH table, it should contain technical parameters such as  `TechnicalKEY`, `Date_from`, `Date_to` and `Is_valid`. . Furthermore, the schema for the source table and destination table should be the same, except for technical fields in the destination table.
+
+The check is performed using a SQL query to delegate computation to the BigQuery engine, excluding non-valid records (`Is_valid = 'no'`) and technical fields.
+
+The result of `TableComparer.compare_tables` is a `pandas.DataFrame` containing all fields from the source/destination table and a column`operation` where
+
+ - value `1` means new or updated rows (to insert in the destination table)
+ - value `2` means deleted rows (to invalidate in the destination table)
+
+Using that DataFrame, the method `ingest_data` updates destination table invalidating already existing records (setting `Is_valid = 'no'`) for every primary key stored in the dataframe, so every record to be update and delete is invalidated. Then, the above method inserts the records contained in the dataframe where `operation` value is equal to 1, in order to insert new and updated records.
+
+Using that DataFrame, the `ingest_data` method updates the destination table by invalidating existing records (setting `Is_valid = 'no'`) for every primary key stored in the DataFrame. This ensures that every record to be updated and deleted is invalidated. Then, the method inserts the records contained in the DataFrame where the `operation` value is equal to 1, in order to insert new and updated records.
 
 ## Run the code
 
