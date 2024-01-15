@@ -23,7 +23,7 @@ If not, please run the following command from terminal `gcloud auth application-
 The folder structure is detailed in the following section:
 <details>
   <summary>Show project structure</summary>
-    ```markdown
+    ```md
     worldline_bq_usecase
     ┣ bin
     ┃ ┣ down.sh
