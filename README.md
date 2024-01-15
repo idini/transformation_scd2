@@ -1,6 +1,7 @@
 <p align="center">
 <img src="./docs/images/worldline_logo.png" />
 </p>
+
 # Worldline - Data Engineer Transformation SCD2 use case
 
 **Maurizio Idini**
