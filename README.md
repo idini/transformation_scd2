@@ -209,7 +209,7 @@ The result of `TableComparer.compare_tables` is a `pandas.DataFrame` containing 
 Using that DataFrame, the `ingest_data` method updates the destination table by invalidating existing records (setting `Is_valid = 'no'`) for every primary key stored in the DataFrame. This ensures that every record to be updated and deleted is invalidated. Then, the method inserts the records contained in the DataFrame where the `operation` value is equal to 1, in order to insert new and updated records.
 
 <p align="center">
-<img src="./docs/images/result.png" />
+<img src="./docs/images/result_table.png" />
 </p>
 
 The *insert* and *update* operations are performed using `BigQueryTransaction`, instantiated on a `BigQuerySession`, in order to guarantee consinstency during transactions.
