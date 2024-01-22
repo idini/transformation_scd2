@@ -6,7 +6,7 @@ from lib.dbmanagement.connector.BigQueryConnector import BigQueryConnector
 
 
 class TestBigQueryManager():
-    PROJECT_IT = 'worldline-prj'
+    PROJECT_IT = 'my-prj'
 
   ### Class setup/teardown
 

@@ -1,11 +1,6 @@
-<p align="center">
-<img src="./docs/images/worldline_logo.png" />
-</p>
-
-# Worldline - Data Engineer Transformation SCD2 use case
+# Data Engineer Transformation SCD2 use case
 
 **Maurizio Idini**
-16/01/2024
 
 ## Index
  - [Introduction](#introduction)
@@ -41,7 +36,7 @@ If not, please run the following command in the terminal `gcloud auth applicatio
 ### Folder structure
 
 ```markdown
-worldline_bq_usecase
+transformation_scd2
 ┣ bin
 ┃ ┣ down.sh
 ┃ ┣ test.sh
@@ -114,7 +109,7 @@ The main folder contains
 The `lib` code is composed by
 
  - `data` folder that contains the code for *comparer* and *ingestor*
- - `dbmanagement` folder that contains the code for *connector*, **tablemanagement* and *transaction*
+ - `dbmanagement` folder that contains the code for *connector*, *tablemanagement* and *transaction*
 
 Furthermore, the repository contains a `sql_example` folder with sql files to
  - [generate table Table1_Partners_Input.sql](./sql_example/setup_tables/create_populate_Table_1_Partners_Input.sql)
@@ -133,7 +128,7 @@ Furthermore, the repository contains a `sql_example` folder with sql files to
 ### Code documentation
 
 The `docs` folder contains class documentation generated using [pdoc](https://pdoc.dev/) library.
-The documentation is accessible through [Documentation Main Page](https://idini.github.io/worldline_bq_usecase/lib.html)
+The documentation is accessible through [Documentation Main Page](https://idini.github.io/transformation_scd2/lib.html)
 
 ### Flow
 
@@ -148,7 +143,7 @@ A process (in the use_case the `/trigger/` POST call) calls `DataIngestor.ingest
 The `DataIngestor` object is initialized using an instance of `BigQueryConnector` to connect to BigQuery, and the connection is already instantiated on a specific `project_id`.
 
  ```
-project_id = 'worldline-prj'
+project_id = 'my-prj'
 
 bq_client = BigQueryConnector(project_id).get_client()
 ingestor = DataIngestor(bq_client)

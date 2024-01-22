@@ -9,7 +9,7 @@ from lib.dbmanagement.tablemanagement.BigQueryManager import BigQueryManager
 
 
 class TestBigQueryManager():
-    PROJECT_IT = 'worldline-prj'
+    PROJECT_IT = 'my-prj'
     SAMPLE_DATASET_NAME = 'test'
 
     SAMPLE_TABLE_NAME = 'transaction_table'

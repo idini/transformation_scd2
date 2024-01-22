@@ -8,7 +8,7 @@ import logging
 import pytest
 
 class TestTableComparer ():
-    PROJECT_IT = 'worldline-prj'
+    PROJECT_IT = 'my-prj'
     SAMPLE_DATASET_NAME = 'test'
     SAMPLE_SOURCE_TABLE_NAME = 'source_transaction_table'
     SAMPLE_SOURCE_TABLE_ID = 'test.source_transaction_table'

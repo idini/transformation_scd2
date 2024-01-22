@@ -5,7 +5,7 @@ from lib.data.ingestor.DataIngestor import DataIngestor
 from flask import Flask, request
 from flask_restx import Resource, Api, fields
 
-project_id = 'worldline-prj'
+project_id = 'my-prj'
 
 bq_client = BigQueryConnector(project_id).get_client()
 ingestor = DataIngestor(bq_client)
@@ -14,8 +14,8 @@ app = Flask(__name__)
 api = Api()
 api.init_app(
     app,
-    title = 'Worldline - Data Engineer Transformation SCD2 use case',
-    description = 'This is a simple REST API containing one endpoint. This API allows you to trigger Transformation SCD2 on bigquery project worldline-prj',
+    title = 'Data Engineer Transformation SCD2',
+    description = 'This is a simple REST API containing one endpoint. This API allows you to trigger Transformation SCD2 on bigquery project my-prj',
     version = '1.0.0',
     validate=False
 )
@@ -32,7 +32,7 @@ post_request = api.model('post_request', {
 class TriggerTransformation(Resource):
 
     @api.doc(
-            summary = 'Trigger Transformation SCD2 on Bigquery "worldline-prj" project for source and destination tables specified in parameters',
+            summary = 'Trigger Transformation SCD2 on Bigquery "my-prj" project for source and destination tables specified in parameters',
             responses={
                 200: 'successful operation',
                 405: 'Invalid input'
@@ -53,32 +53,3 @@ class TriggerTransformation(Resource):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
-
-
-# if __name__ == "__main__":
-
-# from lib.connection.BigQueryConnector import BigQueryConnector
-# from lib.tablemanagement.BigQueryManager import BigQueryManager
-# from lib.data.comparer.TableComparer import TableComparer
-# from lib.data.ingestor.DataIngestor import DataIngestor
-# project_id = 'worldline-prj'
-# src_table  = 'transformation_scd2.table_1_partners_input'
-# dest_table = 'transformation_scd2.table_2_partners_output'
-# pkey       = 'PartnerID'
-
-# project_id = 'worldline-prj'
-
-# bq_client = BigQueryConnector(project_id).get_client()
-# bq_manager = BigQueryManager(bq_client)
-# comparer = TableComparer(bq_manager)
-# ingestor = DataIngestor(bq_manager)
-
-# data_to_ingest = comparer.compare_tables(src_table, dest_table)
-# print(data_to_ingest)
-
-# res = ingestor.ingest_data(dest_table, pkey, data_to_ingest)
-# print(res)
