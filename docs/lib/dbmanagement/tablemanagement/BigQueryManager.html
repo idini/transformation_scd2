@@ -22,7 +22,6 @@
   <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
 </svg>                &nbsp;lib.dbmanagement.tablemanagement</a>
 
-            <img src="./images/worldline_logo.png" class="logo" alt="project logo"/>
 
             <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
                    pattern=".+" required>
@@ -52,7 +51,7 @@
     </ul>
 
 
-            <footer>Worldline - Maurizio Idini</footer>
+            <footer>Maurizio Idini</footer>
 
         <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
             built with <span class="visually-hidden">pdoc</span><img
@@ -66,7 +65,7 @@
                     <h1 class="modulename">
 <a href="./../../../lib.html">lib</a><wbr>.<a href="./../../dbmanagement.html">dbmanagement</a><wbr>.<a href="./../tablemanagement.html">tablemanagement</a><wbr>.BigQueryManager    </h1>
 
-                
+
                         <input id="mod-BigQueryManager-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-BigQueryManager-view-source"><span>View Source</span></label>
@@ -184,7 +183,7 @@
                 <section id="BigQueryManager">
                             <input id="BigQueryManager-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">BigQueryManager</span>:
 
@@ -306,7 +305,7 @@
                             <div id="BigQueryManager.__init__" class="classattr">
                                         <input id="BigQueryManager.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="name">BigQueryManager</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">bigquery_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Client</span></span>)</span>
 
                 <label class="view-source-button" for="BigQueryManager.__init__-view-source"><span>View Source</span></label>
@@ -323,13 +322,13 @@
 </span></pre></div>
 
 
-    
+
 
                             </div>
                             <div id="BigQueryManager.run_query" class="classattr">
                                         <input id="BigQueryManager.run_query-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">run_query</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">query</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">job_config</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">QueryJobConfig</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">QueryJob</span>:</span></span>
 
@@ -371,7 +370,7 @@
                             <div id="BigQueryManager.insert_records" class="classattr">
                                         <input id="BigQueryManager.insert_records-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">insert_records</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">destination_table</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">rows</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>,</span><span class="param">	<span class="n">job_config</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">QueryJobConfig</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
@@ -428,7 +427,7 @@
                             <div id="BigQueryManager.update_records" class="classattr">
                                         <input id="BigQueryManager.update_records-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">update_records</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">destination_table</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">assignments</span><span class="p">:</span> <span class="nb">dict</span>,</span><span class="param">	<span class="n">filter_cond</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">job_config</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
